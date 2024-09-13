@@ -7,8 +7,8 @@ export class Services {
 
      constructor() {
         this.client
-        .setEndpoint(import.meta.VITE_APPWRITE_URL)
-        .setProject(import.meta.VITE_APPWRITE_PROJECT_ID);
+        .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
+        .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
 
         this.database = new Databases(this.client);
         this.storage = new Storage(this.client);
@@ -18,8 +18,8 @@ export class Services {
     async createPost({title, slug, content, featuredImg, status, userId}) {
         try {
             return await this.database.createDocument(
-                import.meta.VITE_APPWRITE_DATABASE_ID,
-                import.meta.VITE_APPWRITE_COLLECTION_ID,
+                import.meta.env.VITE_APPWRITE_DATABASE_ID,
+                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug,
                 {
                     title,
@@ -38,8 +38,8 @@ export class Services {
     async updatePost(slug, params) {
         try {
             return await this.database.updateDocument(
-                import.meta.VITE_APPWRITE_DATABASE_ID,
-                import.meta.VITE_APPWRITE_COLLECTION_ID,
+                import.meta.env.VITE_APPWRITE_DATABASE_ID,
+                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug,
                 {
                     ...params
@@ -54,8 +54,8 @@ export class Services {
     async deletePost(slug) {
         try {
             return await this.database.deleteDocument(
-                import.meta.VITE_APPWRITE_DATABASE_ID,
-                import.meta.VITE_APPWRITE_COLLECTION_ID,
+                import.meta.env.VITE_APPWRITE_DATABASE_ID,
+                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug
             )
         } catch (error) {
@@ -67,8 +67,8 @@ export class Services {
     async getSinglePost(slug) {
         try {
             return await this.database.getDocument(
-                import.meta.VITE_APPWRITE_DATABASE_ID,
-                import.meta.VITE_APPWRITE_COLLECTION_ID,
+                import.meta.env.VITE_APPWRITE_DATABASE_ID,
+                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug
             )
         } catch (error) {
@@ -80,8 +80,8 @@ export class Services {
     async getAllPost(queries = [Query.equal('status', 'active')]) {
         try {
             return await this.database.listDocuments(
-                import.meta.VITE_APPWRITE_DATABASE_ID,
-                import.meta.VITE_APPWRITE_COLLECTION_ID,
+                import.meta.env.VITE_APPWRITE_DATABASE_ID,
+                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 queries
             )
         } catch (error) {
@@ -93,7 +93,7 @@ export class Services {
     async uploadFile (file) {
         try {
             return await this.storage.createFile(
-                import.meta.VITE_APPWRITE_BUCKET_ID,
+                import.meta.env.VITE_APPWRITE_BUCKET_ID,
                 ID.unique(),
                 file
             )
@@ -106,7 +106,7 @@ export class Services {
     async deleteFile(id) {
         try {
             return await this.storage.deleteFile(
-                import.meta.VITE_APPWRITE_BUCKET_ID,
+                import.meta.env.VITE_APPWRITE_BUCKET_ID,
                 id
             )
         } catch (error) {
@@ -117,7 +117,7 @@ export class Services {
     // PREVIEW FILE/IMAGE 
     async getFilePreview(id) {
         return this.storage.getFilePreview(
-            import.meta.VITE_APPWRITE_BUCKET_ID,
+            import.meta.env.VITE_APPWRITE_BUCKET_ID,
             id
         )
     }

@@ -8,8 +8,8 @@ export class AuthService {
     constructor(){
         // APPWRITE CLIENT 
         this.client
-        .setEndpoint(import.meta.VITE_APPWRITE_URL)
-        .setProject(import.meta.VITE_APPWRITE_PROJECT_ID);
+        .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
+        .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
         // APPWRITE ACCOUNT 
         this.account = new Account(this.client);
     }
@@ -52,6 +52,8 @@ export class AuthService {
     async getCurrentUser() {
         try {
             const user = await this.account.get();
+            console.log(user);
+            
             return user;
         } catch (error) {
             throw error;
