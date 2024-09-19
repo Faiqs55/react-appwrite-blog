@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 import { Outlet } from "react-router-dom";
+import Container from "./Components/Container/Container";
 
 function App() {
 
@@ -23,12 +24,12 @@ function App() {
   }, [])  
 
   return !loading ? (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+    <div className="flex flex-wrap content-between bg-gray-400">
       <div className="w-full block">
          <Header/>
-         <main>
-          {/* <Outlet/> */}
-         </main>
+           <Container>
+            <h1>hello</h1>
+           </Container>
          <Footer/>
       </div>
     </div>
