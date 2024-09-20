@@ -92,11 +92,12 @@ export class Services {
     // UPLOAD FILE/IMAGE
     async uploadFile (file) {
         try {
-            return await this.storage.createFile(
+            let res = await this.storage.createFile(
                 import.meta.env.VITE_APPWRITE_BUCKET_ID,
                 ID.unique(),
                 file
             )
+            return res;
         } catch (error) {
             throw error;
         }
@@ -115,11 +116,12 @@ export class Services {
     }
 
     // PREVIEW FILE/IMAGE 
-    async getFilePreview(id) {
-        return this.storage.getFilePreview(
+     getFilePreview(id) {        
+        const res = this.storage.getFilePreview(
             import.meta.env.VITE_APPWRITE_BUCKET_ID,
             id
         )
+        return res.href
     }
 };
 

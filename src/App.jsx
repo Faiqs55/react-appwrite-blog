@@ -5,7 +5,7 @@ import { login, logout } from "./store/authSlice";
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { Outlet } from "react-router-dom";
-import Container from "./Components/Container/Container";
+import Container from "./Components/Container";
 
 function App() {
 
@@ -15,7 +15,6 @@ function App() {
   useEffect(()=>{
     authService.getCurrentUser()
     .then(userData => {
-      console.log(userData);
       
       if(userData) dispatch(login(userData))
       else dispatch(logout());
@@ -28,7 +27,7 @@ function App() {
       <div className="w-full block">
          <Header/>
            <Container>
-            <h1>hello</h1>
+           <Outlet />
            </Container>
          <Footer/>
       </div>

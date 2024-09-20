@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import Container from "../Container/Container"
+import Container from "../Container"
 import Logo from '../Logo'
+import LogoutBtn from './LogoutBtn'
 
 
 const Header = () => {

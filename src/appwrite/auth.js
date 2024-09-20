@@ -15,13 +15,13 @@ export class AuthService {
     }
 
     // SIGNUP METHOD 
-    async createAccount({email, pass, name}) {
+    async createAccount({email, password, name}) {
 
         try {
             const userAccount = await this.account.create(
                 ID.unique(),
                 email,
-                pass,
+                password,
                 name
             );
 
@@ -38,10 +38,10 @@ export class AuthService {
     }
 
     // LOGIN METHOD 
-    async loginAccount({email, pass}) {
+    async loginAccount({email, password}) {
         
          try {
-            const session = await this.account.createEmailPasswordSession(email, pass);
+            const session = await this.account.createEmailPasswordSession(email, password);
             return session;
          } catch (error) {
             throw error;
@@ -51,9 +51,7 @@ export class AuthService {
     // CHECK LOGGED IN 
     async getCurrentUser() {
         try {
-            const user = await this.account.get();
-            console.log(user);
-            
+            const user = await this.account.get();            
             return user;
         } catch (error) {
             throw error;
