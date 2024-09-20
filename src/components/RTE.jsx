@@ -2,7 +2,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const RTE = ({control, name, label, defaultVal=''}) => {
+const RTE = ({control, name, label, defaultValue=''}) => {
   return (
     <div className='w-full'> 
     {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
@@ -10,14 +10,15 @@ const RTE = ({control, name, label, defaultVal=''}) => {
     <Controller
      name={name || 'content'}
      control={control}
-     render={({field: onChange}) => (
+     render={({field: {onChange}}) => (
         <Editor
+         onEditorChange={onChange}
          apiKey="4k35rn1tiaqntn4pop4mbzsy5ek8ymh2jrj2p3t2a63tdjhb"
-         initialValue={defaultVal}
+         initialValue={defaultValue}
          init={{
             height: 500,
             menubar: true,
-            initialValue: defaultVal,
+            initialValue: defaultValue,
             plugins: [
                 "image",
                 "advlist",
@@ -46,7 +47,6 @@ const RTE = ({control, name, label, defaultVal=''}) => {
          }}
         />
      )}
-     onEditorChange={onchange}
     />
     </div>
   );

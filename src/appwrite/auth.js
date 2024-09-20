@@ -28,7 +28,7 @@ export class AuthService {
             // CHECK IF USER CREATED 
             if(userAccount){
             //    CALL LOGIN METHOD 
-                this.loginAccount(email, pass);
+               return this.loginAccount({email, password});
             }else{
                 return userAccount
             }

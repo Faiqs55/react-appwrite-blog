@@ -13,9 +13,10 @@ const PostForm = ({ post }) => {
     useForm({
       defaultValues: {
         title: post?.title || "",
-        slug: post?.slug || "",
+        slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "active",
+        image: post?.featuredImg || ''
       },
     });
 
@@ -23,6 +24,7 @@ const PostForm = ({ post }) => {
   const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
+    
     if (post) {
       const file = data.image[0]
         ? await service.uploadFile(data.image[0])
@@ -107,7 +109,7 @@ const PostForm = ({ post }) => {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImg)}
                             alt={post.title}
                             className="rounded-lg"
                         />

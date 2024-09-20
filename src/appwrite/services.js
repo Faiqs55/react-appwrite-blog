@@ -35,14 +35,18 @@ export class Services {
     }
 
     // UPDATE POST 
-    async updatePost(slug, params) {
+    async updatePost(slug, {title, content, featuredImg, status, userId}) {        
         try {
             return await this.database.updateDocument(
                 import.meta.env.VITE_APPWRITE_DATABASE_ID,
                 import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug,
                 {
-                    ...params
+                    title,
+                    content,
+                    featuredImg,
+                    status,
+                    userId
                 }
             )
         } catch (error) {
