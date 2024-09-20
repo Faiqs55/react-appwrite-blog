@@ -13,6 +13,7 @@ import Login from './pages/Login.jsx';
 import Post from './pages/Post.jsx';
 import Signup from './pages/Signup.jsx';
 import AuthLayout from './Components/AuthLayout.jsx';
+import Aloo from './pages/Aloo.jsx'
 
 const router = createBrowserRouter([
   {
